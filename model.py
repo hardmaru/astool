@@ -322,7 +322,7 @@ def main():
     model.load_model(filename)
     print(model.body_param)
   else:
-    params = model.get_random_model_params(stdev=0.5)
+    params = model.get_random_model_params(stdev=0.1)
     model.set_model_params(params)
 
   if final_mode:

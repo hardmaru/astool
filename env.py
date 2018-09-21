@@ -30,6 +30,12 @@ def make_env(env_name, seed=-1, render_mode=False):
     if env_name.startswith("AugmentAnt"):
       from robogym import AugmentAnt
       env = AugmentAnt()
+    elif env_name.startswith("AugmentHopper"):
+      from robogym import AugmentHopper
+      env = AugmentHopper()
+    elif env_name.startswith("AugmentHalfCheetah"):
+      from robogym import AugmentHalfCheetah
+      env = AugmentHalfCheetah()
     else:
       env = gym.make(env_name)
     if render_mode and not env_name.startswith("Augment"):
