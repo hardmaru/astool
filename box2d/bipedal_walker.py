@@ -94,8 +94,10 @@ class AugmentBipedalWalker(gym.Env):
     }
 
     hardcore = False
+    smalllegs = False
+    talllegs = False
 
-    def __init__(self):
+    def __init__(self, augment_reward=True):
         self.scale_vector = np.array([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], dtype=np.float)
         self.seed()
         self.viewer = None
@@ -103,6 +105,8 @@ class AugmentBipedalWalker(gym.Env):
         self.world = Box2D.b2World()
         self.terrain = None
         self.hull = None
+
+        self.augment_reward = augment_reward
 
         self.prev_shaping = None
 
@@ -305,9 +309,27 @@ class AugmentBipedalWalker(gym.Env):
         #LEG_W = 1.0*8/SCALE
         #LEG_H = 1.0*34/SCALE # maybe make one for each leg?
 
+        def calculate_total_area(x):
+          return x[0]*x[1]+x[2]*x[3]+x[4]*x[5]+x[6]*x[7]
+
+        def calculate_height(x): # returns height of shorter leg
+          return np.minimum(x[1]+x[3], x[5]+x[7])
+
         body_param = [8.0, 34.0, 6.4, 34.0, 8.0, 34.0, 6.4, 34.0]
+        if self.smalllegs:
+          self.orig_leg_area = calculate_total_area(body_param)
+        if self.talllegs:
+          self.orig_leg_height = calculate_height(body_param)
+
         for i in range(len(body_param)):
           body_param[i] = body_param[i]*self.scale_vector[i]
+
+        if self.smalllegs:
+          self.leg_area = calculate_total_area(body_param)
+          self.reward_factor = (self.orig_leg_area/self.leg_area)
+        if self.talllegs:
+          self.leg_height = calculate_height(body_param)
+          self.reward_factor = (self.leg_height/self.orig_leg_height)
 
         leg1_w_top = body_param[0]*U
         leg1_h_top = body_param[1]*U
@@ -478,6 +500,9 @@ class AugmentBipedalWalker(gym.Env):
             reward -= 0.00035 * MOTORS_TORQUE * np.clip(np.abs(a), 0, 1)
             # normalized to about -50.0 using heuristic, more optimal agent should spend less
 
+        if (self.smalllegs or self.talllegs) and self.augment_reward: # augments reward according to design
+          reward *= self.reward_factor
+
         done = False
         if self.game_over or pos[0] < 0:
             reward = -100
@@ -554,6 +579,12 @@ class AugmentBipedalWalker(gym.Env):
 
 class AugmentBipedalWalkerHardcore(AugmentBipedalWalker):
     hardcore = True
+
+class AugmentBipedalWalkerSmallLegs(AugmentBipedalWalker):
+    smalllegs = True
+
+class AugmentBipedalWalkerTallLegs(AugmentBipedalWalker):
+    talllegs = True
 
 if __name__=="__main__":
     # Heurisic: suboptimal, have no notion of balance.

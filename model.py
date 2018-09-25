@@ -212,7 +212,7 @@ def simulate(model, train_mode=False, render_mode=True, num_episode=5, seed=-1, 
   orig_mode = True  # hack for bipedhard's reward augmentation during training (set to false for hack)
   dct_compress_mode = False
 
-  max_episode_length = 1000
+  max_episode_length = 3000
 
   if train_mode and max_len > 0:
     if max_len < max_episode_length:

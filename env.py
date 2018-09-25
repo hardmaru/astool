@@ -16,6 +16,12 @@ def make_env(env_name, seed=-1, render_mode=False):
     if (env_name.startswith("AugmentBipedalWalkerHardcore")):
       from box2d.bipedal_walker import AugmentBipedalWalkerHardcore
       env = AugmentBipedalWalkerHardcore()
+    elif (env_name.startswith("AugmentBipedalWalkerSmallLegs")):
+      from box2d.bipedal_walker import AugmentBipedalWalkerSmallLegs
+      env = AugmentBipedalWalkerSmallLegs()
+    elif (env_name.startswith("AugmentBipedalWalkerTallLegs")):
+      from box2d.bipedal_walker import AugmentBipedalWalkerTallLegs
+      env = AugmentBipedalWalkerTallLegs()
     else:
       from box2d.bipedal_walker import AugmentBipedalWalker
       env = AugmentBipedalWalker()

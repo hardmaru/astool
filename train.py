@@ -434,7 +434,7 @@ if __name__ == "__main__":
   parser.add_argument('--retrain', type=int, default=0, help='set to 0 to disable retraining every eval_steps if results suck.\n only works w/ ses, openes, pepg.')
   parser.add_argument('-s', '--seed_start', type=int, default=111, help='initial seed')
   parser.add_argument('--sigma_init', type=float, default=0.10, help='sigma_init')
-  parser.add_argument('--sigma_decay', type=float, default=0.999, help='sigma_decay')
+  parser.add_argument('--sigma_decay', type=float, default=0.9995, help='sigma_decay')
 
   args = parser.parse_args()
   if "parent" == mpi_fork(args.num_worker+1): os.exit()

@@ -40,6 +40,30 @@ augment_half_cheetah = Game(env_name='AugmentHalfCheetah-v1',
 )
 games['augment_half_cheetah'] = augment_half_cheetah
 
+augmentbipedsmalllegs = Game(env_name='AugmentBipedalWalkerSmallLegs-v2',
+  body_size=8,
+  input_size=24,
+  output_size=4,
+  time_factor=0,
+  layers=[40, 40],
+  activation='tanh',
+  noise_bias=0.0,
+  output_noise=[False, False, False],
+)
+games['augmentbipedsmalllegs'] = augmentbipedsmalllegs
+
+augmentbipedtalllegs = Game(env_name='AugmentBipedalWalkerTallLegs-v2',
+  body_size=8,
+  input_size=24,
+  output_size=4,
+  time_factor=0,
+  layers=[40, 40],
+  activation='tanh',
+  noise_bias=0.0,
+  output_noise=[False, False, False],
+)
+games['augmentbipedtalllegs'] = augmentbipedtalllegs
+
 augmentbipedhard = Game(env_name='AugmentBipedalWalkerHardcore-v2',
   body_size=8,
   input_size=24,
