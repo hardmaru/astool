@@ -7,7 +7,7 @@ import numpy as np
 import os, sys, time
 from robogym.generate_mujoco_xml import generate_ant_xml, generate_hopper_xml, generate_half_cheetah_xml
 
-FILE_SLEEP_TIME = 3.000
+FILE_SLEEP_TIME = 4.7
 
 class RoboschoolForwardWalkerMujocoXML(RoboschoolForwardWalker, AugmentMujocoXmlEnv):
     def __init__(self, fn, robot_name, action_dim, obs_dim, power):
