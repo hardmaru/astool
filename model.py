@@ -176,7 +176,9 @@ class Model:
           print("bias_std, layer", i, self.bias_std[i])
         pointer += s
     if self.body_scale_lognormal:
-      self.body_param = np.minimum(4.0, np.maximum(0.04, np.exp(model_params[pointer:])))
+      self.body_param = np.minimum(4.0,
+        np.maximum(1.0-self.body_scale_limit,
+          np.exp(model_params[pointer:])))
     else:
       self.body_param = 1.0 + np.tanh(model_params[pointer:]) * self.body_scale_limit
 
