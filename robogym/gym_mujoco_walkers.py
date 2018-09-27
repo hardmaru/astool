@@ -7,7 +7,7 @@ import numpy as np
 import os, sys, time
 from robogym.generate_mujoco_xml import generate_ant_xml, generate_hopper_xml, generate_half_cheetah_xml
 
-FILE_SLEEP_TIME = 4.7
+FILE_SLEEP_TIME = 2.0
 
 class RoboschoolForwardWalkerMujocoXML(RoboschoolForwardWalker, AugmentMujocoXmlEnv):
     def __init__(self, fn, robot_name, action_dim, obs_dim, power):
@@ -22,7 +22,7 @@ class AugmentHopper(RoboschoolForwardWalkerMujocoXML):
         return +1 if z > 0.8 and abs(pitch) < 1.0 else -1
     def augment_env(self, scale_vector):
         self.model_xml = generate_hopper_xml(scale_vector)
-        time.sleep(FILE_SLEEP_TIME) # sleep for 200 milliseconds
+        time.sleep(FILE_SLEEP_TIME*np.random.rand()) # sleep for a random amount of time to avoid harddisk file errors.
 
 class RoboschoolWalker2d(RoboschoolForwardWalkerMujocoXML):
     foot_list = ["foot", "foot_left"]
@@ -52,7 +52,7 @@ class AugmentHalfCheetah(RoboschoolForwardWalkerMujocoXML):
         self.jdict["ffoot"].power_coef  = 30.0
     def augment_env(self, scale_vector):
         self.model_xml = generate_half_cheetah_xml(scale_vector)
-        time.sleep(FILE_SLEEP_TIME) # sleep for 200 milliseconds
+        time.sleep(FILE_SLEEP_TIME*np.random.rand()) # sleep for 200 milliseconds
 
 class AugmentAnt(RoboschoolForwardWalkerMujocoXML):
     foot_list = ['front_left_foot', 'front_right_foot', 'left_back_foot', 'right_back_foot']
@@ -62,7 +62,7 @@ class AugmentAnt(RoboschoolForwardWalkerMujocoXML):
         return +1 if z > 0.26 else -1  # 0.25 is central sphere rad, die if it scrapes the ground
     def augment_env(self, scale_vector):
         self.model_xml = generate_ant_xml(scale_vector)
-        time.sleep(FILE_SLEEP_TIME) # sleep for 200 milliseconds
+        time.sleep(FILE_SLEEP_TIME*np.random.rand()) # sleep for 200 milliseconds
 
 ## 3d Humanoid ##
 
