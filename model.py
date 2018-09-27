@@ -121,6 +121,7 @@ class Model:
 
     self.body_param = np.ones(self.body_size)
     self.body_scale_limit = 0.75
+    self.body_scale_lognormal = (game.augment_mode == "lognormal")
 
     self.param_count += self.body_size
 
@@ -174,7 +175,10 @@ class Model:
         if self.render_mode:
           print("bias_std, layer", i, self.bias_std[i])
         pointer += s
-    self.body_param = 1.0 + np.tanh(model_params[pointer:]) * self.body_scale_limit
+    if self.body_scale_lognormal:
+      self.body_param = np.exp(model_params[pointer:])
+    else:
+      self.body_param = 1.0 + np.tanh(model_params[pointer:]) * self.body_scale_limit
 
   def load_model(self, filename):
     with open(filename) as f:    
