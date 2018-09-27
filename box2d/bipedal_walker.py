@@ -326,10 +326,10 @@ class AugmentBipedalWalker(gym.Env):
 
         if self.smalllegs:
           self.leg_area = calculate_total_area(body_param)
-          self.reward_factor = (self.orig_leg_area/self.leg_area)
+          self.reward_factor = 1.0+np.log(self.orig_leg_area/self.leg_area)
         if self.talllegs:
           self.leg_height = calculate_height(body_param)
-          self.reward_factor = (self.leg_height/self.orig_leg_height)
+          self.reward_factor = 1.0+np.log(self.leg_height/self.orig_leg_height)
 
         leg1_w_top = body_param[0]*U
         leg1_h_top = body_param[1]*U
