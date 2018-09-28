@@ -583,6 +583,9 @@ class AugmentBipedalWalkerHardcore(AugmentBipedalWalker):
 class AugmentBipedalWalkerSmallLegs(AugmentBipedalWalker):
     smalllegs = True
 
+class AugmentBipedalWalkerHardcoreSmallLegs(AugmentBipedalWalkerHardcore):
+    smalllegs = True
+
 class AugmentBipedalWalkerTallLegs(AugmentBipedalWalker):
     talllegs = True
 

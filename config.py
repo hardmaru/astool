@@ -69,6 +69,19 @@ augmentbipedsmalllegs = Game(env_name='AugmentBipedalWalkerSmallLegs-v2',
 )
 games['augmentbipedsmalllegs'] = augmentbipedsmalllegs
 
+augmentbipedhardsmalllegs = Game(env_name='AugmentBipedalWalkerHardcoreSmallLegs-v2',
+  body_size=8,
+  augment_mode="bounded",
+  input_size=24,
+  output_size=4,
+  time_factor=0,
+  layers=[40, 40],
+  activation='tanh',
+  noise_bias=0.0,
+  output_noise=[False, False, False],
+)
+games['augmentbipedhardsmalllegs'] = augmentbipedhardsmalllegs
+
 augmentbipedsmalllegs_lognormal = Game(env_name='AugmentBipedalWalkerSmallLegs-v2',
   body_size=8,
   augment_mode="lognormal",

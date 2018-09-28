@@ -14,8 +14,12 @@ def make_env(env_name, seed=-1, render_mode=False):
     env = racecarGymEnv.RacecarGymEnv(isDiscrete=False, renders=render_mode)
   elif (env_name.startswith("AugmentBipedalWalker")):
     if (env_name.startswith("AugmentBipedalWalkerHardcore")):
-      from box2d.bipedal_walker import AugmentBipedalWalkerHardcore
-      env = AugmentBipedalWalkerHardcore()
+      if (env_name.startswith("AugmentBipedalWalkerHardcoreSmallLegs")):
+        from box2d.bipedal_walker import AugmentBipedalWalkerHardcoreSmallLegs
+        env = AugmentBipedalWalkerHardcoreSmallLegs()
+      else:
+        from box2d.bipedal_walker import AugmentBipedalWalkerHardcore
+        env = AugmentBipedalWalkerHardcore()
     elif (env_name.startswith("AugmentBipedalWalkerSmallLegs")):
       from box2d.bipedal_walker import AugmentBipedalWalkerSmallLegs
       env = AugmentBipedalWalkerSmallLegs()
