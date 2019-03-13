@@ -1,7 +1,7 @@
 # ASTool (fork of ESTool)
 
 <center>
-<video data-src="https://storage.googleapis.com/quickdraw-models/sketchRNN/designrl/augmentbipedhardsmalllegs_all.mp4" type="video/mp4" autoplay muted playsinline loop style="display: block; margin: auto; width: 100%;" ></video>
+<img src="https://designrl.github.io/assets/img/biped_hard.png" width="100%"/>
 <i>Evolved Biped Walker.</i><br/>
 </center>
 <p></p>
