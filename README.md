@@ -6,7 +6,7 @@
 </center>
 <p></p>
 
-Code to reproduce “[Reinforcement Learning for Improving Agent Design](designrl.github.io)” ([designrl.github.io](designrl.github.io) and [arxiv.org/abs/1810.03779](https://arxiv.org/abs/1810.03779)). Uses OpenAI Gym version 9.3, rather than most recent version.
+Code to reproduce “[Reinforcement Learning for Improving Agent Design](https://designrl.github.io)” ([designrl.github.io](https://designrl.github.io) and [arxiv.org/abs/1810.03779](https://arxiv.org/abs/1810.03779)). Uses OpenAI Gym version 9.3, rather than most recent version.
 
 ## Instructions
 
