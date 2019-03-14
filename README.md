@@ -31,10 +31,10 @@ augmentbipedsmalllegs
 To train new models:
 
 ```
-python train.py ENVNAME -n 96 -e 4 -t 2
+python train.py ENVNAME -n 96 -e 16 -t 2
 ```
 
-Where 96 is the number of CPU cores you have (the actual number of works will be multiplied by 4). The cumulative reward used to calculate the gradients in REINFORCE will be the average of 4 trials. The trained models will be saved in log/ENVNAME...best.json
+Where 96 is the number of CPU cores you have on a cloud virtual machine (the actual number of workers will be multiplied by 2). The cumulative reward used to calculate the gradients in REINFORCE will be the average of 16 trials. The trained models will be saved in log/ENVNAME...best.json
 
 ## License
 
