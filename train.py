@@ -425,7 +425,7 @@ if __name__ == "__main__":
                                                 'using pepg, ses, openes, ga, cma'))
   parser.add_argument('gamename', type=str, help='augment_ant, etc.')
   parser.add_argument('-o', '--optimizer', type=str, help='ses, pepg, openes, ga, cma.', default='pepg')
-  parser.add_argument('-e', '--num_episode', type=int, default=4, help='num episodes per trial')
+  parser.add_argument('-e', '--num_episode', type=int, default=16, help='num episodes per trial')
   parser.add_argument('--eval_steps', type=int, default=25, help='evaluate every eval_steps step')
   parser.add_argument('-n', '--num_worker', type=int, default=96)
   parser.add_argument('-t', '--num_worker_trial', type=int, help='trials per worker', default=2)
